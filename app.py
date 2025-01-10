@@ -57,4 +57,4 @@ def similarity():
 
 if __name__ == '__main__':
     # Lancement de l'application Flask sur le port dynamique
-    app.run(debug=True, host='0.0.0.0', port=os.getenv('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=os.getenv('PORT', 4000))
