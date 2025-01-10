@@ -7,14 +7,9 @@ from gensim.models import KeyedVectors
 app = Flask(__name__)
 CORS(app)  # Autoriser toutes les origines
 
-# URL de téléchargement direct de ton fichier modèle
-model_url = "https://drive.google.com/uc?id=13P-ImO8RZZp6-X8wUsdPnlVTP1R_pxGp"
-model_path = "frWac_no_postag_no_phrase_500_skip_cut100.bin"
-
-# Télécharger le modèle depuis Google Drive si non présent localement
-if not os.path.exists(model_path):
-    print("Téléchargement du modèle...")
-    response = requests.get(model_url, stream=True)
+def download_model_from_dropbox(url, model_path):
+    response = requests.get(url, stream=True)
+    
     if response.status_code == 200:
         with open(model_path, "wb") as f:
             for chunk in response.iter_content(chunk_size=1024):
@@ -22,8 +17,13 @@ if not os.path.exists(model_path):
                     f.write(chunk)
         print("Modèle téléchargé avec succès.")
     else:
-        print(f"Échec du téléchargement (code HTTP {response.status_code}).")
-        exit(1)
+        print(f"Erreur lors du téléchargement (code {response.status_code}).")
+
+# URL Dropbox modifiée pour téléchargement direct
+model_url = "https://www.dropbox.com/scl/fi/opt31kzh1jvvtdm0epcn9/frWac_no_postag_no_phrase_500_skip_cut100.bin?rlkey=k5mekwixk76cvsycw7ii159pl&st=gjyzrfmr&dl=1"
+model_path = "frWac_no_postag_no_phrase_500_skip_cut100.bin"
+
+download_model_from_dropbox(model_url, model_path)
 
 # Charger le modèle Word2Vec
 print("Chargement du modèle...")
