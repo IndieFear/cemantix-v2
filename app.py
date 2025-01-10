@@ -20,7 +20,7 @@ def download_model_from_dropbox(url, model_path):
         print(f"Erreur lors du téléchargement (code {response.status_code}).")
 
 # URL Dropbox modifiée pour téléchargement direct
-model_url = "https://www.dropbox.com/scl/fi/opt31kzh1jvvtdm0epcn9/frWac_no_postag_no_phrase_500_skip_cut100.bin?rlkey=k5mekwixk76cvsycw7ii159pl&st=gjyzrfmr&dl=1"
+model_url = "https://www.dropbox.com/scl/fi/opt31kzh1jvvtdm0epcn9/frWac_no_postag_no_phrase_500_skip_cut100.bin?rlkey=k5mekwixk76cvsycw7ii159pl&st=6rxtlqyt&dl=1"
 model_path = "frWac_no_postag_no_phrase_500_skip_cut100.bin"
 
 download_model_from_dropbox(model_url, model_path)
